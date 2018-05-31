@@ -8,7 +8,6 @@
 .build_release
 build
 distribute
-Makefile.config
 
 data/data_text
 models/VGGNet

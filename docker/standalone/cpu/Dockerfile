@@ -1,6 +1,6 @@
 FROM ubuntu:18.04
-MAINTAINER caffe-maint@googlegroups.com
 
+ARG CLONE_REPO 
 ENV CAFFE_ROOT=/opt/caffe
 ENV TZ America/New_York
 ENV DEBIAN_FRONTEND=noninteractive
@@ -27,7 +27,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-numpy \
         python-pip \
 	python-setuptools \
-        python-scipy && \
+        python-scipy \
+	sudo && \
     rm -rf /var/lib/apt/lists/*
 
 
@@ -48,3 +49,5 @@ ENV PATH $CAFFE_ROOT/build/tools:$PYCAFFE_ROOT:$PATH
 RUN echo "$CAFFE_ROOT/build/lib" >> /etc/ld.so.conf.d/caffe.conf && ldconfig
 
 WORKDIR /workspace
+
+RUN git clone ${CLONE_REPO}
