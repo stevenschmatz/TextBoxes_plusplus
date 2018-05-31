@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         liblmdb-dev \
         libopencv-dev \
         libprotobuf-dev \
+        libreadline-dev \
         libsnappy-dev \
         protobuf-compiler \
         python-dev \
