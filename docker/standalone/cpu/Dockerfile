@@ -1,6 +1,11 @@
 FROM ubuntu:18.04
 MAINTAINER caffe-maint@googlegroups.com
 
+ENV CAFFE_ROOT=/opt/caffe
+ENV TZ America/New_York
+ENV DEBIAN_FRONTEND=noninteractive
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         cmake \
@@ -20,13 +25,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-dev \
         python-numpy \
         python-pip \
+	python-setuptools \
         python-scipy && \
     rm -rf /var/lib/apt/lists/*
 
-ENV CAFFE_ROOT=/opt/caffe
-ENV TZ America/New_York
-ENV DEBIAN_FRONTEND=noninteractive
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 WORKDIR $CAFFE_ROOT
 
